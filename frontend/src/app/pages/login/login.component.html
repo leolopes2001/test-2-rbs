@@ -1,0 +1,40 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="max-w-md mx-auto p-6 bg-white shadow-lg rounded-lg">
+  <h2 class="text-2xl font-bold mb-6 text-center">Login</h2>
+
+  <div class="mb-4">
+    <label for="email" class="block text-sm font-medium text-gray-700">Email:</label>
+    <input
+      id="email"
+      formControlName="email"
+      type="email"
+      class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:[#FFC61D] focus:[#FFC61D] sm:text-sm"
+      placeholder="Digite seu email"
+    />
+    <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="text-red-500 text-sm mt-2">
+      <small *ngIf="loginForm.get('email')?.errors?.['required']">Email é obrigatório.</small>
+      <small *ngIf="loginForm.get('email')?.errors?.['email']">Email inválido.</small>
+    </div>
+  </div>
+
+  <div class="mb-4">
+    <label for="password" class="block text-sm font-medium text-gray-700">Senha:</label>
+    <input
+      id="password"
+      formControlName="password"
+      type="password"
+      class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+      placeholder="Digite sua senha"
+    />
+    <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="text-red-500 text-sm mt-2">
+      <small *ngIf="loginForm.get('password')?.errors?.['required']">Senha é obrigatória.</small>
+    </div>
+  </div>
+
+  <button type="submit" class="w-full px-4 py-2 bg-[#FFC61D] text-white rounded-md  focus:outline-none focus:[#FFC61D] hover:bg-black transition-300 transition-all">
+    Login
+  </button>
+
+  <div *ngIf="errorMessage" class="mt-4 text-red-500 text-sm">
+    <p>{{ errorMessage }}</p>
+  </div>
+</form>
