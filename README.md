@@ -11,7 +11,7 @@
 <pre><code>sudo service apache2 stop</code></pre>
 
 <li><strong>Iniciar Contêineres Docker:</strong></li>
-<pre><code>sail up -d</code></pre>
+<pre><code>sail up -d --build</code></pre>
 
 <li><strong>Gerar a Chave da Aplicação:</strong></li>
 <pre><code>sail artisan key:generate</code></pre>
