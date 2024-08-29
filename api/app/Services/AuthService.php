@@ -24,7 +24,13 @@ class AuthService
     public function login($email, $password)
     {
         if (Auth::attempt(['email' => $email, 'password' => $password])) {
-            return Auth::user();
+            $user_auth = Auth::user();
+
+            $user['token'] = $user_auth->createToken('MyAppLeo')->plainTextToken;
+            $user['name'] = $user_auth->name;
+            $user['email'] = $user_auth->email;
+
+           return $user;
         }
         return null;
     }

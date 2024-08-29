@@ -48,13 +48,9 @@ class AuthController extends BaseController
         $user = $this->authService->login($request->email, $request->password);
 
         if ($user) {
-            $success['token'] = $user->createToken('MyAppLeo')->plainTextToken;
-            $success['name'] = $user->name;
-            $success['email'] = $user->email;
-
-            return $this->sendResponse($success, 'User login successfully.');
+            return $this->sendResponse($user, 'User login successfully.');
         } else {
-            return $this->sendError('Unauthorised.', ['error' => 'Unauthorised'], 401);
+            return $this->sendError('Unauthorised', ['error' => 'Unauthorised'], 401);
         }
     }
 
